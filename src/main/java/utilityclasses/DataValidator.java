@@ -4,7 +4,7 @@ import lombok.NonNull;
 
 import java.time.LocalDate;
 
-public class DataValidator {
+public final class DataValidator {
 
     public static void validateString(String text) {
         validateStringNotEmpty(text);

@@ -6,7 +6,6 @@ import utilityclasses.DataValidator;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
 public class PersonalData {
 
     @Setter(AccessLevel.NONE)
@@ -22,6 +21,14 @@ public class PersonalData {
     private LocalDate dateOfBirth;
 
     private long phoneNumber;
+
+    public PersonalData(String firstName, String lastName, String PIN, LocalDate dateOfBirth, long phoneNumber) {
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPIN(PIN);
+        setDateOfBirth(dateOfBirth);
+        setPhoneNumber(phoneNumber);
+    }
 
     public void setFirstName(String firstName) {
         DataValidator.validateString(firstName);
