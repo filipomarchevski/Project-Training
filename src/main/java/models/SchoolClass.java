@@ -1,9 +1,7 @@
 package models;
 
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NonNull;
-import lombok.Setter;
 import utilityclasses.DataValidator;
 
 import java.util.List;
@@ -11,27 +9,38 @@ import java.util.List;
 @Data
 public class SchoolClass {
 
-    @Setter(AccessLevel.NONE)
     private String name;
 
-    @NonNull
     private List<Teacher> leadTeachers;
 
-    @NonNull
     private List<Teacher> subTeachers;
 
-    @NonNull
-    private List<Student> students;
+    private List<Teacher> students;
 
-    public SchoolClass(String name, @NonNull List<Teacher> leadTeachers, @NonNull List<Teacher> subTeachers, @NonNull List<Student> students) {
+    public SchoolClass(String name, @NonNull List<Teacher> leadTeachers, @NonNull List<Teacher> subTeachers, @NonNull List<Teacher> students) {
         setName(name);
-        this.leadTeachers = leadTeachers;
-        this.subTeachers = subTeachers;
-        this.students = students;
+        setLeadTeachers(leadTeachers);
+        setSubTeachers(subTeachers);
+        setStudents(students);
     }
 
     public void setName(String name) {
         DataValidator.validateString(name);
         this.name = name;
+    }
+
+    public void setLeadTeachers(@NonNull List<Teacher> leadTeachers) {
+        DataValidator.validateListDoesNotContainNullElements(leadTeachers);
+        this.leadTeachers = leadTeachers;
+    }
+
+    public void setSubTeachers(@NonNull List<Teacher> subTeachers) {
+        DataValidator.validateListDoesNotContainNullElements(subTeachers);
+        this.subTeachers = subTeachers;
+    }
+
+    public void setStudents(@NonNull List<Teacher> students) {
+        DataValidator.validateListDoesNotContainNullElements(students);
+        this.students = students;
     }
 }

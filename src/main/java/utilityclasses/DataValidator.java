@@ -3,22 +3,29 @@ package utilityclasses;
 import lombok.NonNull;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public final class DataValidator {
 
     public static void validateString(String text) {
         validateStringNotEmpty(text);
+        validateStringNotBlank(text);
     }
 
-    public static void validateDate(@NonNull LocalDate date) {
+    public static void validateDate(LocalDate date) {
         validateDateIsNotInFuture(date);
+    }
+
+    public static void validateListDoesNotContainNullElements(List list) {
+        if (list.contains(null)) {
+            throw new NullPointerException("The list contains a null value.");
+        }
     }
 
     private static void validateStringNotEmpty(String text) {
         if (text.isEmpty()) {
             throw new IllegalArgumentException("The value can't be an empty string.");
         }
-        validateStringNotBlank(text);
     }
 
     private static void validateStringNotBlank(String text) {

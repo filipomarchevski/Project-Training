@@ -8,16 +8,12 @@ import java.time.LocalDate;
 @Data
 public class PersonalData {
 
-    @Setter(AccessLevel.NONE)
     private String firstName;
 
-    @Setter(AccessLevel.NONE)
     private String lastName;
 
-    @Setter(AccessLevel.NONE)
     private String PIN;
 
-    @Setter(AccessLevel.NONE)
     private LocalDate dateOfBirth;
 
     private long phoneNumber;
@@ -30,22 +26,22 @@ public class PersonalData {
         setPhoneNumber(phoneNumber);
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(@NonNull String firstName) {
         DataValidator.validateString(firstName);
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(@NonNull String lastName) {
         DataValidator.validateString(lastName);
         this.lastName = lastName;
     }
 
-    public void setPIN(String PIN) {
+    public void setPIN(@NonNull String PIN) {
         DataValidator.validateString(lastName);
         this.PIN = PIN;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(@NonNull LocalDate dateOfBirth) {
         DataValidator.validateDate(dateOfBirth);
         this.dateOfBirth = dateOfBirth;
     }
