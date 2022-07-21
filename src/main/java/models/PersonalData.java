@@ -1,7 +1,8 @@
 package models;
 
 import lombok.*;
-import utilityclasses.DataValidator;
+
+import static utilityclasses.DataValidator.*;
 
 import java.time.LocalDate;
 
@@ -27,22 +28,22 @@ public class PersonalData {
     }
 
     public void setFirstName(@NonNull String firstName) {
-        DataValidator.validateString(firstName);
+        validateString(firstName);
         this.firstName = firstName;
     }
 
     public void setLastName(@NonNull String lastName) {
-        DataValidator.validateString(lastName);
+        validateString(lastName);
         this.lastName = lastName;
     }
 
     public void setPIN(@NonNull String PIN) {
-        DataValidator.validateString(lastName);
+        validateString(lastName);
         this.PIN = PIN;
     }
 
     public void setDateOfBirth(@NonNull LocalDate dateOfBirth) {
-        DataValidator.validateDate(dateOfBirth);
+        validateDate(dateOfBirth);
         this.dateOfBirth = dateOfBirth;
     }
 }

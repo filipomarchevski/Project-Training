@@ -56,4 +56,16 @@ class DataValidatorTest {
         // Then
         assertThrows(NullPointerException.class, validatingAListWithNullElement, "'DataValidator.validateListDoesNotContainNullElements()' should have thrown an exception when there is a null element in the list.");
     }
+
+    @Test
+    void validateDateIsMoreThanSevenYearsBeforeTheCurrentDay() {
+        // Given
+        LocalDate dateSixYearsBeforeTheCurrentDay = LocalDate.now().minusYears(6);
+
+        // When
+        Executable validatingADateLessThanSevenYearsInThePast = () -> DataValidator.validateDate(dateSixYearsBeforeTheCurrentDay);
+
+        // Then
+        assertThrows(IllegalArgumentException.class, validatingADateLessThanSevenYearsInThePast, "'DataValidator.validateDate' should have thrown an exception when the date is less than 7 years before the current date.");
+    }
 }

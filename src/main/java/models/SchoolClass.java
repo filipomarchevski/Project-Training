@@ -24,7 +24,7 @@ public class SchoolClass {
         setStudents(students);
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         DataValidator.validateString(name);
         this.name = name;
     }
