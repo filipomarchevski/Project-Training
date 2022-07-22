@@ -1,13 +1,15 @@
-package models;
+package eu.deltasource.SchoolManagementSystem.models;
 
 import lombok.*;
 
-import static utilityclasses.DataValidator.*;
+import static eu.deltasource.SchoolManagementSystem.utilityclasses.DataValidator.*;
 
 import java.time.LocalDate;
 
 @Data
 public class PersonalData {
+
+    private int id;
 
     private String firstName;
 
@@ -19,7 +21,8 @@ public class PersonalData {
 
     private long phoneNumber;
 
-    public PersonalData(String firstName, String lastName, String PIN, LocalDate dateOfBirth, long phoneNumber) {
+    public PersonalData(int id, String firstName, String lastName, String PIN, LocalDate dateOfBirth, long phoneNumber) {
+        setId(id);
         setFirstName(firstName);
         setLastName(lastName);
         setPIN(PIN);

@@ -1,4 +1,4 @@
-package utilityclasses;
+package eu.deltasource.SchoolManagementSystem.utilityclasses;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,7 +37,7 @@ public final class DataValidator {
 
     private static void validateDateIsInCorrectDiapason(LocalDate dateToValidate, LocalDate referenceDate) {
         if (dateToValidate.isAfter(referenceDate)) {
-            throw new IllegalArgumentException("The date must be before " + referenceDate.toString());
+            throw new IllegalArgumentException("The date must be before " + referenceDate);
         }
     }
 }

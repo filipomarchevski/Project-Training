@@ -1,8 +1,8 @@
-package models;
+package eu.deltasource.SchoolManagementSystem.models;
 
 import lombok.Data;
 import lombok.NonNull;
-import utilityclasses.DataValidator;
+import eu.deltasource.SchoolManagementSystem.utilityclasses.DataValidator;
 
 import java.util.List;
 

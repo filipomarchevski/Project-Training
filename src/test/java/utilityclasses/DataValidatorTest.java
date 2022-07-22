@@ -1,5 +1,6 @@
 package utilityclasses;
 
+import eu.deltasource.SchoolManagementSystem.utilityclasses.DataValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 

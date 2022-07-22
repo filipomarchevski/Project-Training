@@ -1,4 +1,4 @@
-package models;
+package eu.deltasource.SchoolManagementSystem.models;
 
 import lombok.Data;
 import lombok.NonNull;
