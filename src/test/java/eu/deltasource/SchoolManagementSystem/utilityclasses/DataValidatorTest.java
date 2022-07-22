@@ -1,4 +1,4 @@
-package utilityclasses;
+package eu.deltasource.SchoolManagementSystem.utilityclasses;
 
 import eu.deltasource.SchoolManagementSystem.utilityclasses.DataValidator;
 import org.junit.jupiter.api.Test;
