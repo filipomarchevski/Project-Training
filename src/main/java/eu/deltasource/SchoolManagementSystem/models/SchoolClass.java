@@ -1,46 +1,43 @@
 package eu.deltasource.SchoolManagementSystem.models;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
-import eu.deltasource.SchoolManagementSystem.utilityclasses.DataValidator;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@ToString
+@EqualsAndHashCode
 public class SchoolClass {
 
     private String name;
 
-    private List<Teacher> leadTeachers;
+    private final List<Student> students = new ArrayList<>();
 
-    private List<Teacher> subTeachers;
-
-    private List<Teacher> students;
-
-    public SchoolClass(String name, @NonNull List<Teacher> leadTeachers, @NonNull List<Teacher> subTeachers, @NonNull List<Teacher> students) {
+    public SchoolClass(String name) {
         setName(name);
-        setLeadTeachers(leadTeachers);
-        setSubTeachers(subTeachers);
-        setStudents(students);
     }
 
     public void setName(@NonNull String name) {
-        DataValidator.validateString(name);
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty | blank spaces.");
+        }
         this.name = name;
     }
 
-    public void setLeadTeachers(@NonNull List<Teacher> leadTeachers) {
-        DataValidator.validateListDoesNotContainNullElements(leadTeachers);
-        this.leadTeachers = leadTeachers;
+    public void addStudent(@NonNull Student student) {
+        students.add(student);
     }
 
-    public void setSubTeachers(@NonNull List<Teacher> subTeachers) {
-        DataValidator.validateListDoesNotContainNullElements(subTeachers);
-        this.subTeachers = subTeachers;
+    public void removeStudent(long id) {
+        students.removeIf(student -> student.getId() == id);
     }
 
-    public void setStudents(@NonNull List<Teacher> students) {
-        DataValidator.validateListDoesNotContainNullElements(students);
-        this.students = students;
+    public boolean hasStudent(long id) {
+        for (Student student : students) {
+            if (student.getId() == id) return true;
+        }
+        return false;
     }
 }

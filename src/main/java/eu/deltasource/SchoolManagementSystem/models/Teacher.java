@@ -1,33 +1,52 @@
 package eu.deltasource.SchoolManagementSystem.models;
 
-import lombok.*;
-import eu.deltasource.SchoolManagementSystem.utilityclasses.DataValidator;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.ToString;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-public class Teacher {
+@EqualsAndHashCode
+@ToString
+public class Teacher extends Person {
 
-    @NonNull
-    private PersonalData personalData;
+    private final Set<Subject> leadingSubjects = new HashSet<>();
 
-    private List<SchoolClass> leadClasses;
+    private final Set<Subject> substituteSubjects = new HashSet<>();
 
-    private List<SchoolClass> subClasses;
-
-    public Teacher(PersonalData personalData, List<SchoolClass> leadClasses, List<SchoolClass> subClasses) {
-        setPersonalData(personalData);
-        setLeadClasses(leadClasses);
-        setSubClasses(subClasses);
+    public Teacher(int id, String firstName, String lastName, String pin, LocalDate dateOfBirth, String phoneNumber) {
+        super(id, firstName, lastName, pin, dateOfBirth, phoneNumber);
     }
 
-    public void setLeadClasses(@NonNull List<SchoolClass> leadClasses) {
-        DataValidator.validateListDoesNotContainNullElements(leadClasses);
-        this.leadClasses = leadClasses;
+    public void addLeadingSubject(@NonNull Subject subject) {
+        leadingSubjects.add(subject);
     }
 
-    public void setSubClasses(@NonNull List<SchoolClass> subClasses) {
-        DataValidator.validateListDoesNotContainNullElements(leadClasses);
-        this.subClasses = subClasses;
+    public void removeLeadingSubject(int subjectLevel, @NonNull String subjectName) {
+        leadingSubjects.removeIf(subject -> subject.getLevel() == subjectLevel && subject.getName().equals(subjectName));
+    }
+
+    public boolean hasLeadingSubject(int subjectLevel, @NonNull String subjectName) {
+        for (Subject subject : leadingSubjects) {
+            if (subject.getLevel() == subjectLevel && subject.getName().equals(subjectName)) return true;
+        }
+        return false;
+    }
+
+    public void addSubstituteSubject(@NonNull Subject subject) {
+        substituteSubjects.add(subject);
+    }
+
+    public void removeSubstituteSubject(int subjectLevel, @NonNull String subjectName) {
+        substituteSubjects.removeIf(subject -> subject.getLevel() == subjectLevel && subject.getName().equals(subjectName));
+    }
+
+    public boolean hasSubstituteSubject(int subjectLevel, @NonNull String subjectName) {
+        for (Subject subject : substituteSubjects) {
+            if (subject.getLevel() == subjectLevel && subject.getName().equals(subjectName)) return true;
+        }
+        return false;
     }
 }
